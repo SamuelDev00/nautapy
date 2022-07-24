@@ -12,8 +12,8 @@ from PortalClient import PortalClient  # se importa el cliente para el Portal Na
 
 client = PortalClient('usuario@nauta.com.cu','Contraseña')         # se instancia el cliente
 
-with open("captcha_img.png", 'wb') as fp:
-    fp.write(client.get_captcha())  # guarda la imagen captcha
+with open("captcha.png", 'wb') as img:
+    img.write(client.get_captcha())  # guarda la imagen captcha
 
 client.login(input("Captcha: "))  # inicia sesión en el portal
 
