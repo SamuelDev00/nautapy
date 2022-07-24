@@ -28,18 +28,14 @@ print(client.get_info('credit'))       # imprime en pantalla el saldo de la cuen
 * change_password: Cambia la contraseña de la cuenta logueada.
 * change_mail_password: Cambia la contraseña de la cuenta de correo asociada a la cuenta logueada.
 ### Propiedades
-* captcha_as_bytes: Imagen captcha en bytes
-* block_date: Fecha de bloqueo
-* delete_date: Fecha de eliminación
-* account_type: Tipo de cuenta
-* service_type: Tipo de servicio
-* credit: Saldo
-* time: Tiempo disponible
-* mail_account: Cuenta de correo asociada
+* username: Usuario de la cuenta.
+* account_type: Tipo de cuenta.
+* service_type: Tipo de servicio.
+* credit: Saldo.
+* time: Tiempo disponible.
+* mail_account: Cuenta de correo asociada.
 
 Todas las contribuciones son bienvenidas al proyecto :)
-
-Si te gusta el proyecto dale una estrella para que otros lo encuentren más facilmente.
 
 ## Módulos
 ```text
