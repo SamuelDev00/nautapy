@@ -20,14 +20,14 @@ client.login(input("Captcha: "))  # inicia sesión en el portal
 print(client.get_info('credit'))       # imprime en pantalla el saldo de la cuenta logueada
 
 ```
-## Funciones y propiedades de PortalClient
+## Funciones y datos de PortalClient
 ### Funciones
 * login: Loguea al usuario en el portal.
 * recharge: Recarga la cuenta logueada.
 * transfer: Transfiere saldo a otra cuenta nauta.
 * change_password: Cambia la contraseña de la cuenta logueada.
 * change_mail_password: Cambia la contraseña de la cuenta de correo asociada a la cuenta logueada.
-### Propiedades
+### Datos
 * username: Usuario de la cuenta.
 * account_type: Tipo de cuenta.
 * service_type: Tipo de servicio.
