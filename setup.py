@@ -20,6 +20,7 @@ setup(
     long_description = get_readme(),
     long_description_content_type = "text/markdown",
     url = "https://github.com/SamuelDev00/nautapy",
+    download_url = 'https://github.com/SamuelDev00/nautapy/tarball/1.0',
     author = "SamuelDev",
     author_email = "samuel.falconpc@gmail.com",
     license = "GNU General Public License v3",
