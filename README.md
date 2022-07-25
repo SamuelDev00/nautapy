@@ -39,6 +39,7 @@ Todas las contribuciones son bienvenidas al proyecto :)
 
 ## Módulos
 ```text
-requests~=2.27.1
-beautifulsoup4~=4.10.0
+beautifulsoup4==4.10.0
+requests==2.27.1
+lxml==4.7.1
 ```
