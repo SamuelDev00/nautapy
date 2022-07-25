@@ -8,7 +8,7 @@ ofrecidos por [Portal de Usuario](https://www.portal.nauta.cu/).
 
 ## Accediendo al Portal Nauta
 ```python
-from PortalClient import PortalClient  # se importa el cliente para el Portal Nauta
+from nautapy.client import PortalClient  # se importa el cliente para el Portal Nauta
 
 client = PortalClient('usuario@nauta.com.cu','Contraseña')         # se instancia el cliente
 
