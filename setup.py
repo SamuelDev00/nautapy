@@ -34,5 +34,5 @@ setup(
     ],
     keywords = "Portal Nauta Librería",
     packages=find_packages(),
-    install_requires=["requests~=2.27.1", "beautifulsoup4~=4.10.0"],
+    install_requires=["requests~=2.27.1", "beautifulsoup4~=4.10.0", "lxml==4.7.1"],
 )
