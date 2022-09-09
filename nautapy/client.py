@@ -15,9 +15,9 @@ class PortalClient(object):
         self.cookies = ''
         self.proxy = ''
         if self.proxy == '':
-             pass
+            self.proxy = ''
         else:
-             self.proxy = dict(https=self.proxy)
+            self.proxy = dict(https=self.proxy)
         self.headers = {'content-type': 'application/x-www-form-urlencoded', "User-agent":"Mozilla/5.0 (X11; Linux x86_64)"}
 
 
@@ -42,30 +42,28 @@ class PortalClient(object):
         
     def login(self, captcha):
         try: 
-             login = self.url+'user/login/es-es'
-             resp = self.session.get(login, proxies=self.proxy, headers=self.headers)
-             user = self.username
-             contra = self.password
-             self.cookies = resp.cookies
-             self.csrf = self.get_csrf(login)
-             self.captcha = captcha
-             payload = {'csrf': self.csrf,
-                        'login_user': user,
-                        'password_user': contra, 
-                        'captcha': self.captcha,
-                        'btn_submit': ''}
-             resp2 = self.session.post(login, data=payload, proxies=self.proxy, headers=self.headers, cookies=self.cookies)
-             if resp2.text.count('"msg_error">'):
-                  mensaje_error = resp2.text.split('"msg_error">')[1].split("<")[0]
-                  return print(f'No pude iniciar sesión: {mensaje_error}')
-             else:
-                  return print('\nHe iniciado sesión\n')
+            login = self.url+'user/login/es-es'
+            resp = self.session.get(login, proxies=self.proxy, headers=self.headers)
+            self.cookies = resp.cookies
+            self.csrf = self.get_csrf(login)
+            self.captcha = captcha
+            payload = {'csrf': self.csrf,
+                       'login_user': self.username,
+                       'password_user': self.password, 
+                       'captcha': self.captcha,
+                       'btn_submit': ''}
+            resp2 = self.session.post(login, data=payload, proxies=self.proxy, headers=self.headers, cookies=self.cookies)
+            if resp2.text.count('"msg_error">'):
+                mensaje_error = resp2.text.split('"msg_error">')[1].split("<")[0]
+                return f'No pude iniciar sesión: {mensaje_error}'
+            else:
+                return 'He iniciado sesión'
         except Exception as ex:
             return print(ex)
     
 
-    def get_info(self,attr):
-        if attr == "blocking_date_home" or attr == "date_of_elimination_home":
+    def get_info(self, info):
+        if info == "blocking_date_home" or info == "date_of_elimination_home":
             index = 1
         else:
             index = 0
@@ -74,7 +72,7 @@ class PortalClient(object):
         resp = self.session.get(url, proxies=self.proxy, headers=self.headers)
         soup = BeautifulSoup(resp.text,'html.parser')
         for div in soup.find_all("div", {"class": "col s12 m6"}):
-            if div.find("h5").text.strip().lower() == PortalClient.datos[attr]:
+            if div.find("h5").text.strip().lower() == PortalClient.datos[info]:
                 if index == 1 and count == 0:
                     count = 1
                     continue
@@ -91,12 +89,12 @@ class PortalClient(object):
         error = resp.text
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            print(mensaje_error)
+            return print(mensaje_error)
         elif error.count('"msg_message">'):
-             mensaje_mensaje = error.split('"msg_message">')[1].split("<")[0]
-             return print(mensaje_mensaje)
+            mensaje_mensaje = error.split('"msg_message">')[1].split("<")[0]
+            return mensaje_mensaje
         else:
-             return print('Error Desconocido')
+            return 'Error Desconocido'
 
 
     def transfer(self, monto, password, account_transfer):
@@ -113,13 +111,13 @@ class PortalClient(object):
         saldo = root_element5.xpath('//div[@class="card-panel"]/div/div/p')[0] 
         saldo_str = saldo.text_content()
         if error.count("msg_error"):
-             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-             print(f'{mensaje_error}: {saldo_str}')
+            mensaje_error = error.split('"msg_error">')[1].split("<")[0]
+            return print(f'{mensaje_error}: {saldo_str}')
         elif error.count('"msg_message">'):
-             mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
-             return print(f'{mensaje_error2}: {saldo_str}')
+            mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
+            return f'{mensaje_error2}: {saldo_str}'
         else:
-             return print("Error Desconocido")
+            return 'Error Desconocido'
 
 
     def change_password(self, old_password, new_password):
@@ -134,12 +132,12 @@ class PortalClient(object):
         error = resp.text
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            print(mensaje_error)
+            return print(mensaje_error)
         elif error.count('"msg_message">'):
-             mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
-             return print(mensaje_error2)
+            mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
+            return mensaje_error2
         else:
-             return print('Error Desconocido')
+            return 'Error Desconocido'
 
 
     def change_mail_password(self, old_password, new_password):
@@ -154,9 +152,9 @@ class PortalClient(object):
         error = resp.text
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            print(mensaje_error)
+            return print(mensaje_error)
         elif error.count('"msg_message">'):
-             mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
-             return print(mensaje_error2)
+            mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
+            return mensaje_error2
         else:
-             return print('Error Desconocido')
+            return 'Error Desconocido'
