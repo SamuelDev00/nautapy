@@ -59,7 +59,7 @@ class PortalClient(object):
             else:
                 return 'He iniciado sesión'
         except Exception as ex:
-            return print(ex)
+            return ex
     
 
     def get_info(self, info):
