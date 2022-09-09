@@ -89,7 +89,7 @@ class PortalClient(object):
         error = resp.text
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            return print(mensaje_error)
+            return mensaje_error
         elif error.count('"msg_message">'):
             mensaje_mensaje = error.split('"msg_message">')[1].split("<")[0]
             return mensaje_mensaje
