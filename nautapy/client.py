@@ -112,7 +112,7 @@ class PortalClient(object):
         saldo_str = saldo.text_content()
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            return print(f'{mensaje_error}: {saldo_str}')
+            return f'{mensaje_error}: {saldo_str}'
         elif error.count('"msg_message">'):
             mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
             return f'{mensaje_error2}: {saldo_str}'
@@ -132,7 +132,7 @@ class PortalClient(object):
         error = resp.text
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            return print(mensaje_error)
+            return mensaje_error
         elif error.count('"msg_message">'):
             mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
             return mensaje_error2
@@ -152,7 +152,7 @@ class PortalClient(object):
         error = resp.text
         if error.count("msg_error"):
             mensaje_error = error.split('"msg_error">')[1].split("<")[0]
-            return print(mensaje_error)
+            return mensaje_error
         elif error.count('"msg_message">'):
             mensaje_error2 = error.split('"msg_message">')[1].split("<")[0]
             return mensaje_error2
